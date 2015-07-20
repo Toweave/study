@@ -1,0 +1,14 @@
+body {
+  padding-top: 70px;
+  padding-bottom: 30px;
+}
+
+#box-01{
+	color: red;
+}
+.box-02{
+	color: orange;
+}
+.box-03{
+	color: green;
+}
