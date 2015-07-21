@@ -32,21 +32,28 @@
 //       $("div").slideUp("normal", runIt);
 // }
 // runIt();
-$("#start").click(function () {
-      $("div").show("slow");
-      $("div").animate({left:'+=200'},5000);
-      $("div").queue(function () {
-          $(this).addClass("newcolor");
-          $(this).dequeue();
-      });
-      $("div").animate({left:'-=200'},1500);
-      $("div").queue(function () {
-          $(this).removeClass("newcolor");
-          $(this).dequeue();
-      });
-      $("div").slideUp();
-  });
-  $("#stop").click(function () {
-      $("div").queue("fx", []);
-      $("div").stop();
-  });
+// $("#start").click(function () {
+//       $("div").show("slow");
+//       $("div").animate({left:'+=200'},5000);
+//       $("div").queue(function () {
+//           $(this).addClass("newcolor");
+//           $(this).dequeue();
+//       });
+//       $("div").animate({left:'-=200'},1500);
+//       $("div").queue(function () {
+//           $(this).removeClass("newcolor");
+//           $(this).dequeue();
+//       });
+//       $("div").slideUp();
+//   });
+//   $("#stop").click(function () {
+//       $("div").queue("fx", []);
+//       $("div").stop();
+//   });
+
+$(function(){
+  $("li:first-child").css("background-color","#eee");
+  $("li:last-child").css("background-color","#eee");
+  
+  
+});
