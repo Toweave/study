@@ -12,3 +12,18 @@ body {
 .box-03{
 	color: green;
 }
+
+
+.focused {
+    background: #f00;
+}
+td{
+  width: 100px;
+  height: 1.4em;
+  border:1px solid #aaa;
+}
+.test{
+  width: 100px;
+  height: 2em;
+  background-color: #edd;
+}
