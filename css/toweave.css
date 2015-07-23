@@ -27,3 +27,19 @@ td{
   height: 2em;
   background-color: #edd;
 }
+.protected{
+  width: 100px;
+  height: 2em;
+  background-color: #edd;
+}
+
+.selected{
+  width: 100px;
+  height: 2em;
+  background-color: #edd;
+}
+.hilight{
+  width: 100px;
+  height: 2em;
+  background-color: #edd;
+}
