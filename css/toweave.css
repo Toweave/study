@@ -33,7 +33,7 @@ td{
   background-color: #edd;
 }
 
-.selected{
+.select .before{
   width: 100px;
   height: 2em;
   background-color: #edd;
@@ -43,3 +43,9 @@ td{
   height: 2em;
   background-color: #edd;
 }
+/*#navbar ul li{
+  width: 140px;
+}
+#navbar ul li ul li{
+  width: 200px;
+}*/
