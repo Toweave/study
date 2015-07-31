@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>test</title>
+  <link rel="stylesheet" type="text/css" href="">
+  <script type="text/javascript" src="js/jquery-1.11.3.js"></script>
+  <script type="text/javascript">
+
+  $(document).ready(function(){
+    // $("#all").on('click', function(event){
+    //   $("#check input:checkbox").attr("checked", true);
+    // });
+    $("#all").on('click', function(){
+      if ($("#all").attr("checked")){
+        $("#check input:checkbox").attr("checked", true);
+      }else{
+        $("#check input:checkbox").attr("checked", false);
+      }
+    });
+  });
+
+
+  </script>
+
+
+
+
+</head>
+<body>
+<div>This is</div>
+<input id="all" type="button" />全选
+<input id="other" type="button" />反选
+
+<table>
+  <tbody id="check">
+    <td>
+      <input id="chk01" type="checkbox" />
+    </td>
+    <td>1</td>
+    <td>
+      <input id="chk02" type="checkbox" />
+    </td>
+    <td>2</td>
+    <td>
+      <input id="chk03" type="checkbox" />
+    </td>
+    <td>3</td>
+  </tbody>
+</table>
+
+</body>
+</html>

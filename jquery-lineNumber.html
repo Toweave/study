@@ -1,0 +1,199 @@
+<HTML>
+<HEAD>
+<meta charset="utf-8">
+<TITLE>DirMap</TITLE>
+<meta http-equiv='Content-Type' content='text/html; charset=gb2312'>
+</HEAD>
+<style>
+* {
+ font-size: 12px
+}
+body {
+ margin: 10px; padding: 0px
+}
+A {
+ COLOR: black; TEXT-DECORATION: none;
+}
+A:hover {
+ COLOR: black; TEXT-DECORATION: none;
+}
+A:link {
+ TEXT-DECORATION: none
+}
+A:visited {
+ TEXT-DECORATION: none
+}
+table.list{
+ cursor: default;
+ border:1px solid #cccccc
+ background-color: #cccccc;
+ border-collapse: collapse;
+ border-Color: #cccccc;
+}
+</style>
+<script>
+function check_form() {
+ var the_form = document.forms[0];
+ if(!/^[\w\.]+$/.test(the_form.name.value)) {
+  alert('Bad File Name !');
+  the_form.name.focus();
+  return false;
+ }
+ if(!/^[0-7]{3}$/.test(the_form.attrib.value)) {
+  alert('Bad File Attrib !');
+  the_form.attrib.focus();
+  return false;
+ }
+ if(the_form.del.checked) {
+  return confirm('Are you sure to delete the file ?');
+ }
+ return true;
+}
+function show_ln(){
+ var txt_ln  = document.getElementById('txt_ln');
+ var txt_main  = document.getElementById('txt_main');
+ txt_ln.scrollTop = txt_main.scrollTop;
+ while(txt_ln.scrollTop != txt_main.scrollTop) {
+  txt_ln.value += (i++) + '\n';
+  txt_ln.scrollTop = txt_main.scrollTop;
+ }
+ return;
+}
+function editTab(){
+ var code, sel, tmp, r
+ var tabs=''
+ event.returnValue = false
+ sel =event.srcElement.document.selection.createRange()
+ r = event.srcElement.createTextRange()
+ switch (event.keyCode){
+  case (8) :
+   if (!(sel.getClientRects().length > 1)){
+    event.returnValue = true
+    return
+   }
+   code = sel.text
+   tmp = sel.duplicate()
+   tmp.moveToPoint(r.getBoundingClientRect().left, sel.getClientRects()[0].top)
+   sel.setEndPoint('startToStart', tmp)
+   sel.text = sel.text.replace(/^\t/gm, '')
+   code = code.replace(/^\t/gm, '').replace(/\r\n/g, '\r')
+   r.findText(code)
+   r.select()
+   break
+  case (9) :
+   if (sel.getClientRects().length > 1){
+    code = sel.text
+    tmp = sel.duplicate()
+    tmp.moveToPoint(r.getBoundingClientRect().left, sel.getClientRects()[0].top)
+    sel.setEndPoint('startToStart', tmp)
+    sel.text = '\t'+sel.text.replace(/\r\n/g, '\r\t')
+    code = code.replace(/\r\n/g, '\r\t')
+    r.findText(code)
+    r.select()
+   }else{
+    sel.text = '\t'
+    sel.select()
+   }
+   break
+  case (13) :
+   tmp = sel.duplicate()
+   tmp.moveToPoint(r.getBoundingClientRect().left, sel.getClientRects()[0].top)
+   tmp.setEndPoint('endToEnd', sel)
+   for (var i=0; tmp.text.match(/^[\t]+/g) && i<tmp.text.match(/^[\t]+/g)[0].length; i++) tabs += '\t'
+   sel.text = '\r\n'+tabs
+   sel.select()
+   break
+  default  :
+   event.returnValue = true
+   break
+ }
+}
+</script>
+<BODY>
+<div style='font-weight:bold; font-size: 18px'>File: ../fso/upload_manager.class.php</div><br>
+<table width='700' class='list' border='1' bgcolor='#eeeeee' bordercolorlight='#000000' bordercolordark='#FFFFFF' cellpadding='0' cellspacing='0'>
+  <tr bgcolor='#cccccc'> 
+    <td colspan='2' height='20'> 
+      <div align='center'><b>File Information</b> </div>
+    </td>
+  </tr>
+  <tr> 
+    <td colspan='2'> <br />
+      <form name='edit' method='post' action='fso_edit.php' onsubmit='return check_form()'>
+        <table width='90%' border='0' align='center' >
+          <tr> 
+            <td>Name ：</td>
+            <td><input type='text' name='name' value='upload_manager.class.php'></td>
+          </tr>
+          <tr> 
+            <td valign='top'>Time ：</td>
+            <td>2003-10-02 00:55:59</td>
+          </tr>
+          <tr> 
+            <td>Attrib ：</td>
+            <td><input type='text' name='attrib' value='666'> (rw-rw-rw-)</td>
+          </tr>
+          <tr> 
+            <td>MoveTo ：</td>
+            <td>
+              <select name='move'>
+                <option value=''>NoMove</option>
+                <option value='../fso/../'>Parent Direction</option>
+              </select>
+            </td>
+          </tr>
+           <tr> 
+             <td>Size ：</td>
+             <td>6.2 KB</td>
+           </tr>
+           <tr> 
+             <td valign='top'>Content ：</td>
+             <td>
+               <textarea id='txt_ln' name='content' rows='10' cols='4' style='overflow:hidden;height:200px;border-right:0px;text-align:right' readonly></textarea>
+             <td><textarea id='txt_main' name='content' rows='10' cols='70 'onkeydown='editTab()' onchange="document.forms[0].modi.value='ture'" onscroll='show_ln()' wrap='off' style='overflow:auto;height:200px;padding-left:5px;border-left:0px'>
+              /********************************************
+              *                                           *
+              * Name    : Upload Manager                  *
+              * Author  : Windy_sk                        *
+              * Time    : 2003-05-10                      *
+              * Email   : flyhorses@sina.com              *
+              * HomePage: None (Maybe Soon)               *
+              * Notice  : U Can Use &amp; Modify it freely,   *
+              *           BUT PLEASE HOLD THIS ITEM.      *
+              *                                           *
+              ********************************************/
+              class Upload_Manager {
+               var $upload_path = &quot;&quot;;
+               var $upload_counter = 0;
+               var $upload_result = array();
+               var $upload_rename = false;
+              function Upload_Manager($upload_path = 'upload/', $upload_rename = false, $relative = false) {
+               }
+              }
+              </textarea></td>
+               <script>for(var i=1; i<=20; i++) document.getElementById('txt_ln').value += i + '\n';</script>
+               <input type='hidden' name='modi' value=''>
+             </td>
+           </tr>
+  
+          <tr> 
+            <td colspan='2'> 
+              <div align='center'><br>
+                <input type='hidden' name='name_org' value='upload_manager.class.php'>
+                <input type='hidden' name='path' value='../fso'>
+                <input type='Submit' value=' 确 定 ' name='Submit'>&nbsp;&nbsp;
+                <input type='reset' value=' 重 置 ' name='reset'>&nbsp;&nbsp;
+                <input type='checkbox' value='true' name='del'> 删 除
+              </div>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </td>
+  </tr>
+</table>
+</BODY>
+</HTML>
+ 
+
+        
