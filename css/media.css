@@ -1,0 +1,67 @@
+/*This is media css.
+  Test responsive web page,power by toweave.
+*/
+body {
+  margin: 0px;
+}
+.media {
+    margin: 0px; 
+    width: 100%;
+    height: 100px;
+    background-color: rgba(255,0,0,1.0);
+    position: relative;
+  }
+@media screen and (min-width: 320px) and (max-width: 399x){
+  .media {
+    background-color: #0000cc;
+  }
+}
+@media screen and (min-width: 400px) and (max-width: 767px){
+  .media {
+    background-color: #0066cc;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 959px){
+  .media {
+    background-color: #006600;
+  }
+}
+@media screen and (min-width: 960px) and (max-width: 1199px){
+  .media {
+    background-color: #66ff00;
+  }
+}
+@media screen and (min-width: 1200px) and (max-width: 1920px){
+  .media {
+    background-color: #ff9900;
+  }
+}
+.media p{
+  width: 100%;
+  display: table;
+  text-align: center;
+  margin: auto;
+  position: absolute;
+  top: 0px;left: 0px;bottom: 0px;right: 0px;
+
+}
+/*.Center-Container {  
+  position: relative;  
+}  
+  
+.Absolute-Center {  
+  width: 50%;  
+  height: 50%;  
+  overflow: auto;  
+  margin: auto;  
+  position: absolute;  
+  top: 0; left: 0; bottom: 0; right: 0;  
+}  */
+
+.bottom{
+  width: 100%;
+  height: 50px;
+  background-color: #ddd;
+  position: absolute;
+  bottom: 0px;
+}
